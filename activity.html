@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>活動内容</title>
+</head>
+<body>
+
+<h1>活動内容</h1>
+
+<p id="text">現在、静かに活動中。</p>
+
+<button onclick="change()">活動を観測する</button>
+
+<script>
+const texts = [
+  "新しい動きがあった。",
+  "尊厳レベルが上がった。",
+  "世界が少し変わった。",
+  "特に何も起きなかった。"
+];
+
+function change() {
+  document.getElementById("text").textContent =
+    texts[Math.floor(Math.random() * texts.length)];
+}
+</script>
+
+<br><br>
+<a href="index.html">← トップにもどる</a>
+
+</body>
+</html>

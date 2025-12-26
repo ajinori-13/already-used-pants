@@ -9,122 +9,129 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background: #f2f2f2;
+  background: #fff;
   color: #111;
 }
 
-/* ===== ヒーロー ===== */
+/* ===== HERO ===== */
 .hero {
-  background: linear-gradient(135deg, #e60012, #ff4b4b);
+  background: linear-gradient(135deg, #e60012, #ff7a7a);
   color: white;
-  padding: 100px 20px;
+  padding: 120px 20px;
 }
 
 .hero h1 {
-  font-size: 48px;
+  font-size: 52px;
   margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 18px;
-  max-width: 600px;
+  font-size: 20px;
+  max-width: 700px;
 }
 
-/* ===== 共通セクション ===== */
+/* ===== 帯 ===== */
+.band {
+  background: #111;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* ===== セクション ===== */
 section {
-  padding: 80px 20px;
-  max-width: 1100px;
+  padding: 90px 20px;
+  max-width: 1200px;
   margin: auto;
 }
 
 .section-title {
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: 34px;
+  margin-bottom: 30px;
 }
 
 /* ===== カード ===== */
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  gap: 30px;
 }
 
 .card {
   background: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .card h3 {
-  margin-top: 0;
+  font-size: 22px;
 }
 
 .card a {
   display: inline-block;
-  margin-top: 15px;
-  color: #e60012;
-  font-weight: bold;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #e60012;
+  color: white;
   text-decoration: none;
+  border-radius: 999px;
+  font-weight: bold;
 }
 
 /* ===== フッター ===== */
 footer {
   background: #111;
   color: white;
+  padding: 50px 20px;
   text-align: center;
-  padding: 40px 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ヒーロー -->
 <div class="hero">
   <h1>使用済みパンツ愛護団体</h1>
   <p>
-    それは、もう終わったものなのか。<br>
-    それとも、まだ物語が残っているのか。
+    それは、捨てられるべきものなのか。<br>
+    それとも、まだ物語を持っているのか。
   </p>
 </div>
 
-<!-- セクション：説明 -->
+<div class="band">
+  Official Website / Since 2025
+</div>
+
 <section>
   <h2 class="section-title">このサイトについて</h2>
   <p>
-    本サイトは、使用済みパンツ愛護団体の公式サイトです。<br>
-    団体の理念、活動、そして現在進行中の取り組みを紹介しています。
+    使用済みパンツ愛護団体の公式サイトです。<br>
+    団体の理念、活動内容、現在の取り組みを紹介しています。
   </p>
 </section>
 
-<!-- セクション：コンテンツ -->
 <section>
   <h2 class="section-title">コンテンツ</h2>
 
   <div class="cards">
     <div class="card">
       <h3>団体について</h3>
-      <p>
-        この団体が何を考え、なぜ存在しているのか。
-      </p>
-      <a href="about.html">詳しく見る →</a>
+      <p>思想・目的・存在理由。</p>
+      <a href="about.html">詳しく見る</a>
     </div>
 
     <div class="card">
       <h3>活動内容</h3>
-      <p>
-        現在進行形の活動や、記録されていない出来事。
-      </p>
-      <a href="activity.html">詳しく見る →</a>
+      <p>現在進行中の活動記録。</p>
+      <a href="activity.html">詳しく見る</a>
     </div>
 
     <div class="card">
       <h3>お問い合わせ</h3>
-      <p>
-        連絡を取る手段について。
-      </p>
-      <a href="contact.html">詳しく見る →</a>
+      <p>連絡手段について。</p>
+      <a href="contact.html">詳しく見る</a>
     </div>
   </div>
 </section>

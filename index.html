@@ -2,167 +2,18 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>使用済みパンツ愛護団体</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: "Noto Sans JP", sans-serif;
-  background: linear-gradient(180deg, #0a0a0a, #111);
-  color: #fff;
-}
-
-header {
-  min-height: 100vh;
-  background: linear-gradient(120deg, #ff00cc, #3333ff, #00ffcc);
-  background-size: 300% 300%;
-  animation: bgMove 10s infinite;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 30px;
-}
-
-@keyframes bgMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-header img {
-  width: 160px;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-}
-
-header h1 {
-  font-size: 32px;
-  letter-spacing: 2px;
-}
-
-header p {
-  max-width: 500px;
-  font-size: 16px;
-  opacity: 0.9;
-}
-
-section {
-  padding: 60px 25px;
-  max-width: 900px;
-  margin: auto;
-}
-
-section h2 {
-  font-size: 26px;
-  margin-bottom: 20px;
-  border-left: 4px solid #00ffcc;
-  padding-left: 10px;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 12px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.game {
-  text-align: center;
-  background: #000;
-  border-radius: 16px;
-  padding: 40px 20px;
-}
-
-button {
-  padding: 14px 28px;
-  font-size: 16px;
-  border: none;
-  border-radius: 30px;
-  background: linear-gradient(135deg, #ff00cc, #00ffff);
-  color: #000;
-  font-weight: bold;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-.counter {
-  margin-top: 20px;
-  font-size: 18px;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  font-size: 13px;
-  opacity: 0.6;
-}
-</style>
 </head>
-
 <body>
 
-<header>
-  <img src="logo.png" alt="ロゴ">
-  <h1>使用済みパンツ愛護団体</h1>
-  <p>
-    私たちは、見過ごされがちな存在に  
-    もう一度価値と物語を与える団体です。
-  </p>
-</header>
+<h1>使用済みパンツ愛護団体</h1>
+<p>公式ホームページ</p>
 
-<section>
-  <h2>活動内容</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>保護活動</h3>
-      <p>行き場を失った存在を、やさしく受け入れます。</p>
-    </div>
-    <div class="card">
-      <h3>研究・観察</h3>
-      <p>なぜそうなったのかを、真面目に考えます。</p>
-    </div>
-    <div class="card">
-      <h3>啓発</h3>
-      <p>世界に問いかけます。「本当にそれは不要か？」</p>
-    </div>
-  </div>
-</section>
-
-<section class="game">
-  <h2>パンツ救済シミュレーター</h2>
-  <button onclick="rescue()">救済する</button>
-  <div class="counter">
-    救済数：<span id="count">0</span>
-  </div>
-</section>
-
-<footer>
-  © 使用済みパンツ愛護団体
-</footer>
-
-<script>
-let count = 0;
-function rescue() {
-  count++;
-  document.getElementById("count").textContent = count;
-}
-</script>
+<ul>
+  <li><a href="about.html">団体について</a></li>
+  <li><a href="activity.html">活動内容</a></li>
+  <li><a href="contact.html">お問い合わせ</a></li>
+</ul>
 
 </body>
 </html>

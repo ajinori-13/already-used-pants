@@ -7,13 +7,12 @@
 
 <style>
 :root{
-  --bg-dark:#0b0012;
-  --bg-mid:#001820;
-  --panel:rgba(0,0,0,0.55);
-  --border:rgba(255,255,255,0.25);
-  --text-main:#ffffff;
-  --text-sub:#d6e6ff;
+  --bg:#0b0012;
+  --panel:rgba(0,0,0,0.7);
+  --border:rgba(255,255,255,0.3);
   --accent:#8ffcff;
+  --text:#ffffff;
+  --sub:#d6e6ff;
 }
 
 *{box-sizing:border-box;}
@@ -21,29 +20,21 @@
 body{
   margin:0;
   font-family:"Helvetica Neue", Arial, sans-serif;
-  background:
-    linear-gradient(120deg,var(--bg-dark),var(--bg-mid));
-  color:var(--text-main);
-  line-height:1.9;
+  background:linear-gradient(120deg,#0b0012,#001820);
+  color:var(--text);
+  height:100vh;
+  overflow:hidden;
 }
 
-/* ノイズ弱め */
-.noise{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-}
-
-/* ヘッダー */
+/* トップ */
 header{
-  min-height:100vh;
-  padding:60px 20px;
+  height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
+  padding:40px 20px;
 }
 
 h1{
@@ -53,88 +44,69 @@ h1{
 }
 
 .tagline{
-  max-width:780px;
-  color:var(--text-sub);
-  font-size:1.05rem;
+  max-width:720px;
+  line-height:1.9;
+  color:var(--sub);
 }
 
-/* パネル共通 */
-.panel{
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:28px;
-  backdrop-filter:blur(8px);
-}
-
-/* HUD */
-.hud{
-  margin-top:40px;
-  max-width:900px;
-  width:100%;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+/* ボタン */
+nav{
+  margin-top:50px;
+  display:flex;
   gap:20px;
 }
 
-.hud div{
-  font-size:0.9rem;
-  color:#e8f6ff;
-}
-
-/* ナビ */
-nav{
-  margin-top:60px;
-  display:flex;
-  gap:24px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-nav a{
+nav button{
   padding:14px 32px;
-  color:#000;
-  background:var(--accent);
-  text-decoration:none;
+  border:none;
   border-radius:999px;
+  background:var(--accent);
+  color:#000;
   font-weight:600;
-  transition:0.25s;
+  cursor:pointer;
 }
 
-nav a:hover{
-  transform:translateY(-2px);
+nav button:hover{
   box-shadow:0 8px 24px rgba(143,252,255,0.4);
 }
 
-/* セクション */
-section{
+/* パネル（最初は非表示） */
+.panel{
+  position:fixed;
+  left:50%;
+  bottom:40px;
+  transform:translateX(-50%) translateY(30px);
+  width:90%;
   max-width:900px;
-  margin:0 auto;
-  padding:140px 20px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:32px;
+  backdrop-filter:blur(10px);
+  opacity:0;
+  pointer-events:none;
+  transition:0.35s;
 }
 
-section h2{
-  font-size:2.2rem;
-  margin-bottom:32px;
+.panel.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+  pointer-events:auto;
 }
 
-section p{
-  color:var(--text-sub);
+.panel h2{
+  margin-top:0;
+  margin-bottom:20px;
 }
 
-/* フッター */
-footer{
-  text-align:center;
-  padding:60px 20px;
-  font-size:0.8rem;
-  opacity:0.6;
+.panel p{
+  line-height:1.9;
+  color:var(--sub);
 }
 </style>
 </head>
 
 <body>
-
-<div class="noise"></div>
 
 <header>
   <h1>使用済みパンツ愛護団体</h1>
@@ -145,55 +117,28 @@ footer{
     消費・記憶・所有の構造を捉え直すための団体です。
   </p>
 
-  <div class="hud panel">
-    <div>STATUS : ACTIVE</div>
-    <div>FOCUS : CLOTHING / MEMORY</div>
-    <div>MODE : ARCHIVE</div>
-    <div>UPDATE : CONTINUOUS</div>
-  </div>
-
   <nav>
-    <a href="#about">ABOUT</a>
-    <a href="#activity">ACTIVITY</a>
-    <a href="#contact">CONTACT</a>
+    <button onclick="togglePanel()">ABOUT</button>
+    <button onclick="togglePanel()">ACTIVITY</button>
   </nav>
 </header>
 
-<section id="about">
-  <div class="panel">
-    <h2>団体について</h2>
-    <p>
-      廃棄される衣類には、使用された時間と個人の選択が残されています。<br><br>
-      本団体は、それらを文化的・社会的な文脈で再評価し、
-      消費行動の構造を可視化することを目的としています。
-    </p>
-  </div>
-</section>
+<!-- 表示切り替えパネル -->
+<div id="infoPanel" class="panel">
+  <h2>団体について</h2>
+  <p>
+    廃棄される衣類には、使用された時間と個人の選択が残されています。<br><br>
+    本団体は、それらを文化的・社会的な文脈で再評価し、
+    消費行動の構造を可視化することを目的としています。
+  </p>
+</div>
 
-<section id="activity">
-  <div class="panel">
-    <h2>活動内容</h2>
-    <p>
-      ・使用済み衣類を通した記録と考察<br>
-      ・消費と記憶に関する表現・整理<br>
-      ・所有と不要の境界についての研究
-    </p>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="panel">
-    <h2>連絡先</h2>
-    <p>
-      現在、外部向けの連絡窓口は設けていません。<br>
-      情報は本サイト上で随時更新されます。
-    </p>
-  </div>
-</section>
-
-<footer>
-  © 使用済みパンツ愛護団体
-</footer>
+<script>
+function togglePanel(){
+  const panel = document.getElementById("infoPanel");
+  panel.classList.toggle("show");
+}
+</script>
 
 </body>
 </html>

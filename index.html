@@ -2,193 +2,164 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>使用済みパンツ愛護団体</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使用済みパンツ愛護団体</title>
 
 <style>
-/* ===== 全体 ===== */
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: "Arial", "Hiragino Kaku Gothic ProN", sans-serif;
-  background: linear-gradient(120deg, #1a1a1a, #2b0040, #001f3f);
-  color: #fff;
+  padding: 0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #1a1a1a, #000);
+  color: #f5f5f5;
   overflow-x: hidden;
 }
 
-/* 背景エフェクト */
-.bg {
-  position: fixed;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,0.03),
-      rgba(255,255,255,0.03) 2px,
-      transparent 2px,
-      transparent 6px
-    );
-  animation: bgMove 20s linear infinite;
-  z-index: -1;
-}
-@keyframes bgMove {
-  from { background-position: 0 0; }
-  to   { background-position: 400px 400px; }
-}
-
-/* ヘッダー */
 header {
-  padding: 60px 20px;
-  text-align: center;
-}
-header h1 {
-  font-size: 2.8em;
-  letter-spacing: 0.1em;
-  text-shadow: 0 0 15px #ff00ff;
-}
-header p {
-  opacity: 0.8;
+  min-height: 100vh;
+  padding: 60px 8vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* メニュー */
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 40px;
+h1 {
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
-nav button {
-  background: #000;
-  border: 2px solid #ff00ff;
+
+.sub {
+  font-size: 18px;
+  opacity: 0.7;
+  max-width: 700px;
+}
+
+.nav {
+  margin-top: 40px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav button {
+  background: transparent;
+  border: 2px solid #fff;
   color: #fff;
-  padding: 12px 18px;
+  padding: 14px 28px;
+  font-size: 16px;
   cursor: pointer;
-  font-size: 14px;
   transition: 0.2s;
 }
-nav button:hover {
-  background: #ff00ff;
+
+.nav button:hover {
+  background: #fff;
   color: #000;
-  transform: scale(1.05);
 }
 
-/* ページ */
-.page {
-  display: none;
+section {
+  padding: 120px 8vw;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+section h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+section p {
   max-width: 900px;
-  margin: 0 auto 80px;
-  padding: 30px;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid #555;
-  box-shadow: 0 0 20px rgba(255,0,255,0.3);
-}
-.page.active {
-  display: block;
+  font-size: 18px;
+  line-height: 1.8;
+  opacity: 0.85;
 }
 
-h2 {
-  border-left: 6px solid #00ffff;
-  padding-left: 10px;
-  margin-top: 0;
-}
-
-/* カード */
-.cards {
+.grid {
+  margin-top: 40px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
 }
+
 .card {
-  background: #111;
-  border: 1px solid #444;
-  padding: 15px;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 30px;
+  min-height: 160px;
   transition: 0.3s;
 }
+
 .card:hover {
-  transform: translateY(-5px) rotate(-1deg);
-  box-shadow: 0 0 15px #00ffff;
+  transform: translateY(-6px);
+  border-color: #fff;
 }
 
-/* LINEボタン */
-.line {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 15px 25px;
-  background: #06c755;
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 0 15px #06c755;
-}
-.line:hover {
-  filter: brightness(1.2);
-}
-
-/* フッター */
 footer {
+  padding: 80px 8vw;
   text-align: center;
-  padding: 30px;
   opacity: 0.6;
-  font-size: 12px;
 }
 </style>
 </head>
 
 <body>
-<div class="bg"></div>
 
 <header>
-  <h1>使用済みパンツ愛護団体</h1>
-  <p>意味はない。でも全力。</p>
+  <h1>使用済みパンツ<br>愛護団体</h1>
+  <p class="sub">
+    使用済みパンツという存在を、  
+    文化・思想・概念として再定義し、  
+    無意味に真剣に扱う団体。
+  </p>
+
+  <div class="nav">
+    <button onclick="scrollToId('about')">団体について</button>
+    <button onclick="scrollToId('activity')">活動内容</button>
+    <button onclick="scrollToId('join')">参加する</button>
+    <button onclick="window.open('https://lin.ee/TdJMR8t')">公式LINE</button>
+  </div>
 </header>
 
-<nav>
-  <button onclick="showPage('home')">HOME</button>
-  <button onclick="showPage('about')">ABOUT</button>
-  <button onclick="showPage('activity')">ACTIVITY</button>
-  <button onclick="showPage('contact')">CONTACT</button>
-</nav>
-
-<!-- HOME -->
-<section id="home" class="page active">
-  <h2>ようこそ</h2>
+<section id="about">
+  <h2>団体について</h2>
   <p>
-    このサイトは、<br>
-    <strong>使用済みパンツ愛護団体</strong>の公式（？）ホームページです。
-  </p>
-  <p>
-    深い意味はありません。<br>
-    ただ、サイトを派手に作りたいという強い意志だけがあります。
+    使用済みパンツ愛護団体は、  
+    「本来なら見過ごされるもの」に過剰な意味と価値を与え、  
+    社会の認識を無駄に揺さぶることを目的としています。
   </p>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="page">
-  <h2>この団体について</h2>
-  <div class="cards">
-    <div class="card">存在理由：なんとなく</div>
-    <div class="card">活動方針：ノリと勢い</div>
-    <div class="card">目標：満足するまで作る</div>
-    <div class="card">最終目的：特にない</div>
+<section id="activity">
+  <h2>活動内容</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>思想</h3>
+      <p>なぜそれを守るのか、誰も説明できない状態を維持する。</p>
+    </div>
+    <div class="card">
+      <h3>制作</h3>
+      <p>必要以上に作り込んだWebサイトを量産する。</p>
+    </div>
+    <div class="card">
+      <h3>観測</h3>
+      <p>人が戸惑う瞬間を静かに見守る。</p>
+    </div>
+    <div class="card">
+      <h3>満足</h3>
+      <p>完成した瞬間に興味を失う。</p>
+    </div>
   </div>
 </section>
 
-<!-- ACTIVITY -->
-<section id="activity" class="page">
-  <h2>活動内容</h2>
-  <ul>
-    <li>サイトを無駄にアップデートする</li>
-    <li>UIを盛りすぎる</li>
-    <li>あとから「やりすぎた」と思う</li>
-  </ul>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="page">
-  <h2>連絡先</h2>
-  <p>公式LINEはこちら</p>
-  <a class="line" href="https://lin.ee/TdJMR8t" target="_blank">
-    公式LINEをひらく
-  </a>
+<section id="join">
+  <h2>参加する</h2>
+  <p>
+    参加条件は特にありません。  
+    理解できなくても問題ありません。
+  </p>
 </section>
 
 <footer>
@@ -196,11 +167,8 @@ footer {
 </footer>
 
 <script>
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => {
-    p.classList.remove('active');
-  });
-  document.getElementById(id).classList.add('active');
+function scrollToId(id) {
+  document.getElementById(id).scrollIntoView({behavior: "smooth"});
 }
 </script>
 

@@ -8,7 +8,7 @@
 <style>
 :root{
   --bg:#0b0012;
-  --panel:rgba(0,0,0,0.7);
+  --panel:rgba(0,0,0,0.75);
   --border:rgba(255,255,255,0.3);
   --accent:#8ffcff;
   --text:#ffffff;
@@ -26,7 +26,6 @@ body{
   overflow:hidden;
 }
 
-/* トップ */
 header{
   height:100vh;
   display:flex;
@@ -49,7 +48,6 @@ h1{
   color:var(--sub);
 }
 
-/* ボタン */
 nav{
   margin-top:50px;
   display:flex;
@@ -70,29 +68,43 @@ nav button:hover{
   box-shadow:0 8px 24px rgba(143,252,255,0.4);
 }
 
-/* パネル（最初は非表示） */
+/* パネル */
 .panel{
   position:fixed;
   left:50%;
-  bottom:40px;
-  transform:translateX(-50%) translateY(30px);
+  top:50%;
+  transform:translate(-50%,-50%) scale(0.95);
   width:90%;
   max-width:900px;
   background:var(--panel);
   border:1px solid var(--border);
-  border-radius:20px;
-  padding:32px;
+  border-radius:24px;
+  padding:36px;
   backdrop-filter:blur(10px);
   opacity:0;
   pointer-events:none;
-  transition:0.35s;
+  transition:0.3s;
 }
 
 .panel.show{
   opacity:1;
-  transform:translateX(-50%) translateY(0);
+  transform:translate(-50%,-50%) scale(1);
   pointer-events:auto;
 }
+
+.close{
+  position:absolute;
+  top:18px;
+  right:22px;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:1.4rem;
+  cursor:pointer;
+  opacity:0.7;
+}
+
+.close:hover{opacity:1;}
 
 .panel h2{
   margin-top:0;
@@ -102,6 +114,18 @@ nav button:hover{
 .panel p{
   line-height:1.9;
   color:var(--sub);
+}
+
+/* LINEボタン */
+.line-btn{
+  display:inline-block;
+  margin-top:24px;
+  padding:14px 28px;
+  background:#06c755;
+  color:#fff;
+  text-decoration:none;
+  border-radius:999px;
+  font-weight:600;
 }
 </style>
 </head>
@@ -118,13 +142,13 @@ nav button:hover{
   </p>
 
   <nav>
-    <button onclick="togglePanel()">ABOUT</button>
-    <button onclick="togglePanel()">ACTIVITY</button>
+    <button onclick="openPanel('about')">ABOUT</button>
+    <button onclick="openPanel('activity')">ACTIVITY</button>
   </nav>
 </header>
 
-<!-- 表示切り替えパネル -->
-<div id="infoPanel" class="panel">
+<div id="about" class="panel">
+  <button class="close" onclick="closePanel()">×</button>
   <h2>団体について</h2>
   <p>
     廃棄される衣類には、使用された時間と個人の選択が残されています。<br><br>
@@ -133,10 +157,28 @@ nav button:hover{
   </p>
 </div>
 
+<div id="activity" class="panel">
+  <button class="close" onclick="closePanel()">×</button>
+  <h2>活動内容</h2>
+  <p>
+    ・使用済み衣類を通した記録と考察<br>
+    ・消費と記憶に関する表現<br>
+    ・所有と不要の境界についての研究
+  </p>
+
+  <a class="line-btn" href="https://lin.ee/TdJMR8t" target="_blank">
+    公式LINEはこちら
+  </a>
+</div>
+
 <script>
-function togglePanel(){
-  const panel = document.getElementById("infoPanel");
-  panel.classList.toggle("show");
+function openPanel(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
+}
+
+function closePanel(){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
 }
 </script>
 

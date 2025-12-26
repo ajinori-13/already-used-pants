@@ -1,105 +1,128 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <title>使用済みパンツ愛護団体</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      height: 100vh;
-      background: linear-gradient(120deg, #89f7fe, #66a6ff);
       font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      color: white;
+      background: black;
+      overflow-x: hidden;
+    }
+
+    /* 動く背景 */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(120deg, #ff00cc, #3333ff, #00ffcc);
+      background-size: 400% 400%;
+      animation: bgMove 12s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero {
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: #222;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      padding: 30px 25px;
-      width: 320px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      animation: pop 1s ease-out;
+      padding: 30px;
     }
 
-    img {
-      width: 160px;
-      margin-bottom: 15px;
-      animation: fadeIn 2s ease;
+    .hero img {
+      width: 180px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+      animation: fadeUp 1.5s ease;
     }
 
     h1 {
-      font-size: 26px;
+      font-size: 32px;
       margin: 10px 0;
-      animation: float 3s ease-in-out infinite;
+      letter-spacing: 2px;
+      animation: fadeUp 1.8s ease;
     }
 
-    p {
+    .catch {
+      font-size: 18px;
+      margin-top: 10px;
+      opacity: 0.9;
+      animation: fadeUp 2.2s ease;
+    }
+
+    .scroll {
+      margin-top: 40px;
       font-size: 14px;
-      line-height: 1.6;
-      margin: 10px 0 20px;
-      animation: fadeIn 3s ease;
+      opacity: 0.8;
+      animation: blink 1.5s infinite;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 20px;
-      border-radius: 30px;
-      background: linear-gradient(135deg, #f093fb, #f5576c);
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: transform 0.2s;
-    }
-
-    .btn:hover {
-      transform: scale(1.1);
-    }
-
-    @keyframes pop {
+    @keyframes fadeUp {
       from {
-        transform: scale(0.8);
         opacity: 0;
+        transform: translateY(30px);
       }
       to {
-        transform: scale(1);
         opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    @keyframes blink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-      100% { transform: translateY(0); }
+    section {
+      background: rgba(0,0,0,0.6);
+      padding: 50px 25px;
+    }
+
+    section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    section p {
+      line-height: 1.8;
+      font-size: 15px;
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <img src="logo.png" alt="使用済みパンツ愛護団体ロゴ">
+  <div class="bg"></div>
 
+  <div class="hero">
+    <img src="logo.png" alt="ロゴ">
     <h1>使用済みパンツ愛護団体</h1>
-
-    <p>
-      使用済みパンツの尊厳と未来を守るために<br>
-      まじめに、でもちょっと楽しく活動しています。
-    </p>
-
-    <a href="#" class="btn">活動を見る</a>
+    <div class="catch">
+      それは、捨てられるべき存在なのか。<br>
+      いいえ、まだ物語は終わっていない。
+    </div>
+    <div class="scroll">▼ scroll</div>
   </div>
+
+  <section>
+    <h2>この団体について</h2>
+    <p>
+      使用済みパンツという存在に、<br>
+      もう一度「意味」と「まなざし」を与える。<br><br>
+      ふざけているようで、どこか本気。<br>
+      本気のようで、たぶんふざけている。<br><br>
+      それが、使用済みパンツ愛護団体です。
+    </p>
+  </section>
 </body>
 </html>

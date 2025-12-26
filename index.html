@@ -2,90 +2,96 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>使用済みパンツ愛護団体</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>使用済みパンツ愛護団体</title>
 
 <style>
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f5f5f5;
-  color: #111;
+  background: linear-gradient(120deg, #ff00cc, #3333ff, #00ffcc);
+  background-size: 400% 400%;
+  animation: bgMove 12s infinite alternate;
+  color: white;
+}
+
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 header {
-  background: linear-gradient(90deg, #ff2a6d, #00c2ff);
-  color: white;
   padding: 60px 20px;
   text-align: center;
 }
 
-header h1 {
-  font-size: 42px;
-  margin: 0 0 10px;
+h1 {
+  font-size: 2.8rem;
+  animation: floatText 2s ease-in-out infinite alternate;
 }
 
-header p {
-  font-size: 16px;
-  opacity: 0.9;
+@keyframes floatText {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+nav button {
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  transition: 0.2s;
+}
+
+nav button:hover {
+  transform: scale(1.15) rotate(-2deg);
+  background: #000;
 }
 
 section {
-  padding: 60px 20px;
-  max-width: 1000px;
+  display: none;
+  padding: 20px;
+  max-width: 900px;
   margin: auto;
+  background: rgba(0,0,0,0.45);
+  border-radius: 20px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+section.active {
+  display: block;
+  animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 .card {
-  background: white;
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px) rotate(-0.5deg);
-}
-
-.card h3 {
-  margin-top: 0;
-}
-
-.buttons {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-a.button {
-  display: inline-block;
-  margin: 10px;
-  padding: 15px 30px;
-  border-radius: 999px;
-  background: #111;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-a.button.alt {
-  background: white;
-  color: #111;
-  border: 2px solid #111;
+  background: rgba(255,255,255,0.15);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 15px;
 }
 
 footer {
-  background: #111;
-  color: #aaa;
   text-align: center;
-  padding: 30px 10px;
-  font-size: 14px;
+  padding: 30px;
+  opacity: 0.7;
 }
 </style>
 </head>
@@ -93,46 +99,66 @@ footer {
 <body>
 
 <header>
-  <h1>使用済みパンツ愛護団体</h1>
-  <p>存在していることに意味がある公式サイト</p>
+  <h1>🩲 使用済みパンツ愛護団体 🩲</h1>
+  <p>世界一どうでもよさそうで、わりと本気な団体</p>
 </header>
 
-<section>
-  <div class="grid">
-    <div class="card">
-      <h3>団体について</h3>
-      <p>
-        本団体は、名前のインパクトとは裏腹に、
-        特に深い思想を持たずに活動しています。
-      </p>
-    </div>
+<nav>
+  <button onclick="showPage('home')">ホーム</button>
+  <button onclick="showPage('about')">団体について</button>
+  <button onclick="showPage('gallery')">ギャラリー</button>
+  <button onclick="showPage('contact')">参加する</button>
+</nav>
 
-    <div class="card">
-      <h3>活動内容</h3>
-      <p>
-        主にインターネット上での存在感の維持、
-        ならびにサイト更新作業を行っています。
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>方針</h3>
-      <p>
-        まじめすぎず、ふざけすぎず、
-        なんかすごそうに見えることを目標としています。
-      </p>
-    </div>
+<section id="home" class="active">
+  <div class="card">
+    <h2>🏠 ようこそ</h2>
+    <p>
+      ここは「使用済みパンツ愛護団体」の公式サイトです。<br>
+      意味はあまりありませんが、勢いとノリはあります。
+    </p>
   </div>
 </section>
 
-<div class="buttons">
-  <a class="button" href="#">活動を見る</a>
-  <a class="button alt" href="#">お問い合わせ</a>
-</div>
+<section id="about">
+  <div class="card">
+    <h2>📖 なにする団体？</h2>
+    <ul>
+      <li>無駄に全力でサイトを作る</li>
+      <li>デザインを盛りすぎる</li>
+      <li>完成したら満足する</li>
+    </ul>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="card">
+    <h2>🖼 ギャラリー</h2>
+    <p>ここに画像とかロゴとか置ける（あとで追加）</p>
+    <div style="font-size:2rem;">✨ 🩲 💥 🎮 ✨</div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="card">
+    <h2>🚀 参加する</h2>
+    <p>参加条件：ノリが合えばOK</p>
+    <button onclick="alert('ようこそ団体へ！')">参加する</button>
+  </div>
+</section>
 
 <footer>
   © 使用済みパンツ愛護団体
 </footer>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll("section").forEach(s => {
+    s.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+}
+</script>
 
 </body>
 </html>

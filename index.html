@@ -3,129 +3,103 @@
 <head>
   <meta charset="utf-8">
   <title>使用済みパンツ愛護団体</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      background: linear-gradient(135deg, #7f7cff, #6ee7b7, #fcd34d);
+      height: 100vh;
+      background: linear-gradient(120deg, #89f7fe, #66a6ff);
+      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       color: #222;
     }
 
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      color: white;
-      background: rgba(0,0,0,0.3);
-      backdrop-filter: blur(6px);
-    }
-
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 30px;
-      background: white;
+    .card {
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    }
-
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: #4f46e5;
-    }
-
-    section p {
-      line-height: 1.8;
-      font-size: 1.05rem;
-    }
-
-    .logo {
-      display: block;
-      max-width: 220px;
-      margin: 30px auto;
-    }
-
-    footer {
+      padding: 30px 25px;
+      width: 320px;
       text-align: center;
-      padding: 40px 20px;
-      color: white;
-      opacity: 0.8;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      animation: pop 1s ease-out;
     }
 
-    .button {
+    img {
+      width: 160px;
+      margin-bottom: 15px;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 10px 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 10px 0 20px;
+      animation: fadeIn 3s ease;
+    }
+
+    .btn {
       display: inline-block;
-      margin-top: 20px;
-      padding: 14px 28px;
-      background: #4f46e5;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #f093fb, #f5576c);
       color: white;
       text-decoration: none;
-      border-radius: 999px;
       font-weight: bold;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s;
     }
 
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes pop {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
     }
   </style>
 </head>
 
 <body>
+  <div class="card">
+    <img src="logo.png" alt="使用済みパンツ愛護団体ロゴ">
 
-  <header>
     <h1>使用済みパンツ愛護団体</h1>
-    <p>Already Used Pants Protection Association</p>
-    <a href="#about" class="button">この団体について</a>
-  </header>
 
-  <section id="about">
-    <h2>なにをしている団体？</h2>
     <p>
-      使用済みパンツ愛護団体は、<br>
-      世界にあふれる「忘れ去られた存在」にやさしい視線を向けるために生まれました。
+      使用済みパンツの尊厳と未来を守るために<br>
+      まじめに、でもちょっと楽しく活動しています。
     </p>
-    <p>
-      まじめなのか、ふざけているのか。<br>
-      その境界線を全力で走り抜ける、それが私たちです。
-    </p>
-  </section>
 
-  <section>
-    <h2>ビジョン</h2>
-    <p>
-      ・意味のなさそうなものに、意味を見つける<br>
-      ・くだらなさを、全力で肯定する<br>
-      ・そして、ちょっとだけ世界を面白くする
-    </p>
-  </section>
-
-  <section>
-    <h2>ロゴ</h2>
-    <p style="text-align:center;">
-      （ここにロゴを置く予定）
-    </p>
-    <!--
-    ロゴ画像を置くときは、↓みたいにする
-    <img src="logo.png" alt="ロゴ" class="logo">
-    -->
-  </section>
-
-  <footer>
-    <p>© 使用済みパンツ愛護団体</p>
-  </footer>
-
+    <a href="#" class="btn">活動を見る</a>
+  </div>
 </body>
 </html>

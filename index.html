@@ -7,87 +7,79 @@
 
 <style>
 :root{
-  --bg1:#0b0012;
-  --bg2:#001b26;
-  --neon:#8ffcff;
-  --accent:#ff3bd4;
+  --bg-dark:#0b0012;
+  --bg-mid:#001820;
+  --panel:rgba(0,0,0,0.55);
+  --border:rgba(255,255,255,0.25);
+  --text-main:#ffffff;
+  --text-sub:#d6e6ff;
+  --accent:#8ffcff;
 }
 
 *{box-sizing:border-box;}
 
 body{
   margin:0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family:"Helvetica Neue", Arial, sans-serif;
   background:
-    radial-gradient(circle at 20% 20%, #2a003a, transparent 40%),
-    radial-gradient(circle at 80% 70%, #00344a, transparent 45%),
-    linear-gradient(120deg,var(--bg1),var(--bg2));
-  color:#fff;
-  overflow-x:hidden;
+    linear-gradient(120deg,var(--bg-dark),var(--bg-mid));
+  color:var(--text-main);
+  line-height:1.9;
 }
 
-/* 背景グリッド */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size:40px 40px;
-  opacity:0.15;
-  pointer-events:none;
-}
-
-/* ノイズ */
+/* ノイズ弱め */
 .noise{
   position:fixed;
   inset:0;
   pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  z-index:5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
 }
 
+/* ヘッダー */
 header{
   min-height:100vh;
   padding:60px 20px;
-  display:grid;
-  grid-template-columns:1fr;
-  place-items:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
   text-align:center;
 }
 
 h1{
-  font-size:clamp(2.8rem,6vw,5rem);
-  letter-spacing:0.2em;
-  margin:0 0 20px;
-  text-shadow:
-    0 0 20px rgba(143,252,255,0.4),
-    0 0 40px rgba(255,59,212,0.2);
+  font-size:clamp(2.6rem,6vw,4.5rem);
+  letter-spacing:0.15em;
+  margin-bottom:24px;
 }
 
 .tagline{
-  max-width:760px;
-  line-height:2;
-  opacity:0.9;
+  max-width:780px;
+  color:var(--text-sub);
+  font-size:1.05rem;
 }
 
-/* HUD風パネル */
+/* パネル共通 */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:28px;
+  backdrop-filter:blur(8px);
+}
+
+/* HUD */
 .hud{
   margin-top:40px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:20px;
-  width:100%;
   max-width:900px;
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
 }
 
 .hud div{
-  padding:20px;
-  border:1px solid rgba(255,255,255,0.35);
-  background:rgba(255,255,255,0.06);
-  backdrop-filter: blur(10px);
-  font-size:0.85rem;
+  font-size:0.9rem;
+  color:#e8f6ff;
 }
 
 /* ナビ */
@@ -100,47 +92,34 @@ nav{
 }
 
 nav a{
-  padding:16px 36px;
+  padding:14px 32px;
+  color:#000;
+  background:var(--accent);
   text-decoration:none;
-  color:#fff;
-  border:2px solid var(--neon);
-  background:rgba(0,0,0,0.3);
-  box-shadow:0 0 20px rgba(143,252,255,0.25);
-  transition:0.3s;
+  border-radius:999px;
+  font-weight:600;
+  transition:0.25s;
 }
 
 nav a:hover{
-  background:var(--neon);
-  color:#000;
-  box-shadow:0 0 30px var(--neon);
+  transform:translateY(-2px);
+  box-shadow:0 8px 24px rgba(143,252,255,0.4);
 }
 
 /* セクション */
 section{
-  max-width:1000px;
+  max-width:900px;
   margin:0 auto;
   padding:140px 20px;
 }
 
 section h2{
   font-size:2.2rem;
-  margin-bottom:40px;
-  position:relative;
-}
-
-section h2::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-12px;
-  width:120px;
-  height:4px;
-  background:linear-gradient(90deg,var(--neon),var(--accent));
+  margin-bottom:32px;
 }
 
 section p{
-  line-height:2;
-  opacity:0.95;
+  color:var(--text-sub);
 }
 
 /* フッター */
@@ -162,15 +141,15 @@ footer{
 
   <p class="tagline">
     使用済みパンツ愛護団体は、<br>
-    役目を終えた衣類や痕跡を単なる不要物として扱わず、<br>
-    消費・記憶・所有の構造を再解釈するための団体です。
+    役目を終えた衣類や痕跡を軽視せず、<br>
+    消費・記憶・所有の構造を捉え直すための団体です。
   </p>
 
-  <div class="hud">
+  <div class="hud panel">
     <div>STATUS : ACTIVE</div>
-    <div>MODE : ARCHIVE / RESEARCH</div>
-    <div>DATA : CONSUMPTION / MEMORY</div>
-    <div>UPDATE : ONGOING</div>
+    <div>FOCUS : CLOTHING / MEMORY</div>
+    <div>MODE : ARCHIVE</div>
+    <div>UPDATE : CONTINUOUS</div>
   </div>
 
   <nav>
@@ -181,30 +160,35 @@ footer{
 </header>
 
 <section id="about">
-  <h2>団体について</h2>
-  <p>
-    日常の中で廃棄される衣類には、<br>
-    使用された時間・個人の行動・選択の痕跡が残されています。<br><br>
-    本団体はそれらを文化的・社会的視点から捉え直し、<br>
-    消費行動の構造そのものを可視化することを目的としています。
-  </p>
+  <div class="panel">
+    <h2>団体について</h2>
+    <p>
+      廃棄される衣類には、使用された時間と個人の選択が残されています。<br><br>
+      本団体は、それらを文化的・社会的な文脈で再評価し、
+      消費行動の構造を可視化することを目的としています。
+    </p>
+  </div>
 </section>
 
 <section id="activity">
-  <h2>活動内容</h2>
-  <p>
-    ・使用済み衣類を通した消費行動の記録<br>
-    ・衣類と記憶の関係性に関する研究・表現<br>
-    ・所有と不要の境界についての考察
-  </p>
+  <div class="panel">
+    <h2>活動内容</h2>
+    <p>
+      ・使用済み衣類を通した記録と考察<br>
+      ・消費と記憶に関する表現・整理<br>
+      ・所有と不要の境界についての研究
+    </p>
+  </div>
 </section>
 
 <section id="contact">
-  <h2>連絡先</h2>
-  <p>
-    現在、外部向けの連絡窓口は設けていません。<br>
-    活動内容は本サイト上で随時更新されます。
-  </p>
+  <div class="panel">
+    <h2>連絡先</h2>
+    <p>
+      現在、外部向けの連絡窓口は設けていません。<br>
+      情報は本サイト上で随時更新されます。
+    </p>
+  </div>
 </section>
 
 <footer>

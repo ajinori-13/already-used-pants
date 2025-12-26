@@ -6,179 +6,201 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --bg:#0b0012;
-  --panel:rgba(0,0,0,0.75);
-  --border:rgba(255,255,255,0.3);
-  --accent:#8ffcff;
-  --text:#ffffff;
-  --sub:#d6e6ff;
+/* ===== 全体 ===== */
+body {
+  margin: 0;
+  font-family: "Arial", "Hiragino Kaku Gothic ProN", sans-serif;
+  background: linear-gradient(120deg, #1a1a1a, #2b0040, #001f3f);
+  color: #fff;
+  overflow-x: hidden;
 }
 
-*{box-sizing:border-box;}
-
-body{
-  margin:0;
-  font-family:"Helvetica Neue", Arial, sans-serif;
-  background:linear-gradient(120deg,#0b0012,#001820);
-  color:var(--text);
-  height:100vh;
-  overflow:hidden;
+/* 背景エフェクト */
+.bg {
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 2px,
+      transparent 2px,
+      transparent 6px
+    );
+  animation: bgMove 20s linear infinite;
+  z-index: -1;
+}
+@keyframes bgMove {
+  from { background-position: 0 0; }
+  to   { background-position: 400px 400px; }
 }
 
-header{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:40px 20px;
+/* ヘッダー */
+header {
+  padding: 60px 20px;
+  text-align: center;
+}
+header h1 {
+  font-size: 2.8em;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 15px #ff00ff;
+}
+header p {
+  opacity: 0.8;
 }
 
-h1{
-  font-size:clamp(2.6rem,6vw,4.5rem);
-  letter-spacing:0.15em;
-  margin-bottom:24px;
+/* メニュー */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+nav button {
+  background: #000;
+  border: 2px solid #ff00ff;
+  color: #fff;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+nav button:hover {
+  background: #ff00ff;
+  color: #000;
+  transform: scale(1.05);
 }
 
-.tagline{
-  max-width:720px;
-  line-height:1.9;
-  color:var(--sub);
+/* ページ */
+.page {
+  display: none;
+  max-width: 900px;
+  margin: 0 auto 80px;
+  padding: 30px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid #555;
+  box-shadow: 0 0 20px rgba(255,0,255,0.3);
+}
+.page.active {
+  display: block;
 }
 
-nav{
-  margin-top:50px;
-  display:flex;
-  gap:20px;
+h2 {
+  border-left: 6px solid #00ffff;
+  padding-left: 10px;
+  margin-top: 0;
 }
 
-nav button{
-  padding:14px 32px;
-  border:none;
-  border-radius:999px;
-  background:var(--accent);
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
+/* カード */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
 }
-
-nav button:hover{
-  box-shadow:0 8px 24px rgba(143,252,255,0.4);
+.card {
+  background: #111;
+  border: 1px solid #444;
+  padding: 15px;
+  transition: 0.3s;
 }
-
-/* パネル */
-.panel{
-  position:fixed;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%) scale(0.95);
-  width:90%;
-  max-width:900px;
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:36px;
-  backdrop-filter:blur(10px);
-  opacity:0;
-  pointer-events:none;
-  transition:0.3s;
-}
-
-.panel.show{
-  opacity:1;
-  transform:translate(-50%,-50%) scale(1);
-  pointer-events:auto;
-}
-
-.close{
-  position:absolute;
-  top:18px;
-  right:22px;
-  background:none;
-  border:none;
-  color:#fff;
-  font-size:1.4rem;
-  cursor:pointer;
-  opacity:0.7;
-}
-
-.close:hover{opacity:1;}
-
-.panel h2{
-  margin-top:0;
-  margin-bottom:20px;
-}
-
-.panel p{
-  line-height:1.9;
-  color:var(--sub);
+.card:hover {
+  transform: translateY(-5px) rotate(-1deg);
+  box-shadow: 0 0 15px #00ffff;
 }
 
 /* LINEボタン */
-.line-btn{
-  display:inline-block;
-  margin-top:24px;
-  padding:14px 28px;
-  background:#06c755;
-  color:#fff;
-  text-decoration:none;
-  border-radius:999px;
-  font-weight:600;
+.line {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 25px;
+  background: #06c755;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 0 15px #06c755;
+}
+.line:hover {
+  filter: brightness(1.2);
+}
+
+/* フッター */
+footer {
+  text-align: center;
+  padding: 30px;
+  opacity: 0.6;
+  font-size: 12px;
 }
 </style>
 </head>
 
 <body>
+<div class="bg"></div>
 
 <header>
   <h1>使用済みパンツ愛護団体</h1>
-
-  <p class="tagline">
-    使用済みパンツ愛護団体は、<br>
-    役目を終えた衣類や痕跡を軽視せず、<br>
-    消費・記憶・所有の構造を捉え直すための団体です。
-  </p>
-
-  <nav>
-    <button onclick="openPanel('about')">ABOUT</button>
-    <button onclick="openPanel('activity')">ACTIVITY</button>
-  </nav>
+  <p>意味はない。でも全力。</p>
 </header>
 
-<div id="about" class="panel">
-  <button class="close" onclick="closePanel()">×</button>
-  <h2>団体について</h2>
-  <p>
-    廃棄される衣類には、使用された時間と個人の選択が残されています。<br><br>
-    本団体は、それらを文化的・社会的な文脈で再評価し、
-    消費行動の構造を可視化することを目的としています。
-  </p>
-</div>
+<nav>
+  <button onclick="showPage('home')">HOME</button>
+  <button onclick="showPage('about')">ABOUT</button>
+  <button onclick="showPage('activity')">ACTIVITY</button>
+  <button onclick="showPage('contact')">CONTACT</button>
+</nav>
 
-<div id="activity" class="panel">
-  <button class="close" onclick="closePanel()">×</button>
+<!-- HOME -->
+<section id="home" class="page active">
+  <h2>ようこそ</h2>
+  <p>
+    このサイトは、<br>
+    <strong>使用済みパンツ愛護団体</strong>の公式（？）ホームページです。
+  </p>
+  <p>
+    深い意味はありません。<br>
+    ただ、サイトを派手に作りたいという強い意志だけがあります。
+  </p>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="page">
+  <h2>この団体について</h2>
+  <div class="cards">
+    <div class="card">存在理由：なんとなく</div>
+    <div class="card">活動方針：ノリと勢い</div>
+    <div class="card">目標：満足するまで作る</div>
+    <div class="card">最終目的：特にない</div>
+  </div>
+</section>
+
+<!-- ACTIVITY -->
+<section id="activity" class="page">
   <h2>活動内容</h2>
-  <p>
-    ・使用済み衣類を通した記録と考察<br>
-    ・消費と記憶に関する表現<br>
-    ・所有と不要の境界についての研究
-  </p>
+  <ul>
+    <li>サイトを無駄にアップデートする</li>
+    <li>UIを盛りすぎる</li>
+    <li>あとから「やりすぎた」と思う</li>
+  </ul>
+</section>
 
-  <a class="line-btn" href="https://lin.ee/TdJMR8t" target="_blank">
-    公式LINEはこちら
+<!-- CONTACT -->
+<section id="contact" class="page">
+  <h2>連絡先</h2>
+  <p>公式LINEはこちら</p>
+  <a class="line" href="https://lin.ee/TdJMR8t" target="_blank">
+    公式LINEをひらく
   </a>
-</div>
+</section>
+
+<footer>
+  © 使用済みパンツ愛護団体
+</footer>
 
 <script>
-function openPanel(id){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
-  document.getElementById(id).classList.add('show');
-}
-
-function closePanel(){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => {
+    p.classList.remove('active');
+  });
+  document.getElementById(id).classList.add('active');
 }
 </script>
 

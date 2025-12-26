@@ -1,8 +1,4 @@
-<p style="max-width:600px; line-height:1.8;">
-使用済みパンツ愛護団体は、<br>
-日常の中で役目を終えた衣類や痕跡に新たな意味を見出し、<br>
-消費・記憶・存在について考えるための団体です。
-</p><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -12,9 +8,19 @@
 <style>
 body{
   margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:linear-gradient(135deg,#0f0f0f,#2a0033,#001a2a);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(120deg,#120018,#00121f,#180022);
   color:#fff;
+  overflow-x:hidden;
+}
+
+/* ノイズ */
+.noise{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  z-index:10;
 }
 
 header{
@@ -28,19 +34,20 @@ header{
 }
 
 h1{
-  font-size:clamp(2.5rem,6vw,4rem);
+  font-size:clamp(2.8rem,6vw,4.5rem);
   letter-spacing:0.15em;
-  margin-bottom:20px;
+  margin-bottom:24px;
 }
 
 header p{
-  max-width:700px;
+  max-width:720px;
   line-height:1.9;
   opacity:0.9;
 }
 
+/* ボタンUI */
 nav{
-  margin-top:50px;
+  margin-top:48px;
   display:flex;
   gap:20px;
   flex-wrap:wrap;
@@ -48,17 +55,22 @@ nav{
 }
 
 nav a{
-  padding:14px 28px;
-  border:1px solid rgba(255,255,255,0.4);
+  padding:14px 32px;
   color:#fff;
   text-decoration:none;
+  border-radius:12px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.35);
+  backdrop-filter: blur(10px);
   transition:0.3s;
 }
 
 nav a:hover{
-  background:rgba(255,255,255,0.15);
+  background:rgba(255,255,255,0.18);
+  transform:translateY(-2px);
 }
 
+/* セクション */
 section{
   max-width:900px;
   margin:0 auto;
@@ -67,31 +79,34 @@ section{
 
 section h2{
   font-size:2rem;
+  margin-bottom:30px;
   border-left:4px solid #fff;
   padding-left:16px;
-  margin-bottom:30px;
 }
 
 section p{
   line-height:1.9;
+  opacity:0.95;
 }
 
 footer{
   text-align:center;
   padding:40px 20px;
-  opacity:0.6;
   font-size:0.8rem;
+  opacity:0.6;
 }
 </style>
 </head>
 
 <body>
 
+<div class="noise"></div>
+
 <header>
   <h1>使用済みパンツ愛護団体</h1>
   <p>
     使用済みパンツ愛護団体は、<br>
-    日常の中で役目を終えた衣類や痕跡の存在を軽視せず、<br>
+    役目を終えた衣類や痕跡の存在を軽視せず、<br>
     消費・記憶・所有のあり方について考えるための団体です。
   </p>
 
@@ -105,8 +120,9 @@ footer{
 <section id="about">
   <h2>団体について</h2>
   <p>
-    本団体は、廃棄される衣類を単なる不要物として扱うのではなく、<br>
-    そこに残された時間や記憶、個人と所有物の関係性に着目します。
+    日常の中で不要と判断された衣類には、<br>
+    使われてきた時間や個人の記憶が残されています。<br><br>
+    本団体は、それらを文化・消費行動の視点から捉え直すことを目的としています。
   </p>
 </section>
 
@@ -115,7 +131,7 @@ footer{
   <p>
     ・衣類と消費行動に関する考察<br>
     ・使用済み衣類を題材とした記録・表現<br>
-    ・個人史と所有物の関係についての研究
+    ・個人と所有物の関係性についての研究
   </p>
 </section>
 

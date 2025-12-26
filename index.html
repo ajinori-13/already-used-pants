@@ -1,97 +1,86 @@
-<!DOCTYPE html>
+<p style="max-width:600px; line-height:1.8;">
+使用済みパンツ愛護団体は、<br>
+日常の中で役目を終えた衣類や痕跡に新たな意味を見出し、<br>
+消費・記憶・存在について考えるための団体です。
+</p><!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>使用済みパンツ愛護団体</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: "Segoe UI", system-ui, sans-serif;
+body{
+  margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(135deg,#0f0f0f,#2a0033,#001a2a);
+  color:#fff;
 }
 
-body {
-  margin: 0;
-  background: linear-gradient(120deg, #ff00cc, #3333ff, #00ffcc);
-  background-size: 400% 400%;
-  animation: bgMove 12s infinite alternate;
-  color: white;
+header{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:40px 20px;
 }
 
-@keyframes bgMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+h1{
+  font-size:clamp(2.5rem,6vw,4rem);
+  letter-spacing:0.15em;
+  margin-bottom:20px;
 }
 
-header {
-  padding: 60px 20px;
-  text-align: center;
+header p{
+  max-width:700px;
+  line-height:1.9;
+  opacity:0.9;
 }
 
-h1 {
-  font-size: 2.8rem;
-  animation: floatText 2s ease-in-out infinite alternate;
+nav{
+  margin-top:50px;
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
-@keyframes floatText {
-  from { transform: translateY(0); }
-  to { transform: translateY(-10px); }
+nav a{
+  padding:14px 28px;
+  border:1px solid rgba(255,255,255,0.4);
+  color:#fff;
+  text-decoration:none;
+  transition:0.3s;
 }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 30px;
+nav a:hover{
+  background:rgba(255,255,255,0.15);
 }
 
-nav button {
-  padding: 12px 20px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  background: rgba(0,0,0,0.4);
-  color: white;
-  transition: 0.2s;
+section{
+  max-width:900px;
+  margin:0 auto;
+  padding:120px 20px;
 }
 
-nav button:hover {
-  transform: scale(1.15) rotate(-2deg);
-  background: #000;
+section h2{
+  font-size:2rem;
+  border-left:4px solid #fff;
+  padding-left:16px;
+  margin-bottom:30px;
 }
 
-section {
-  display: none;
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
-  background: rgba(0,0,0,0.45);
-  border-radius: 20px;
+section p{
+  line-height:1.9;
 }
 
-section.active {
-  display: block;
-  animation: pop 0.4s ease;
-}
-
-@keyframes pop {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.card {
-  background: rgba(255,255,255,0.15);
-  padding: 20px;
-  margin: 15px 0;
-  border-radius: 15px;
-}
-
-footer {
-  text-align: center;
-  padding: 30px;
-  opacity: 0.7;
+footer{
+  text-align:center;
+  padding:40px 20px;
+  opacity:0.6;
+  font-size:0.8rem;
 }
 </style>
 </head>
@@ -99,66 +88,48 @@ footer {
 <body>
 
 <header>
-  <h1>🩲 使用済みパンツ愛護団体 🩲</h1>
-  <p>世界一どうでもよさそうで、わりと本気な団体</p>
+  <h1>使用済みパンツ愛護団体</h1>
+  <p>
+    使用済みパンツ愛護団体は、<br>
+    日常の中で役目を終えた衣類や痕跡の存在を軽視せず、<br>
+    消費・記憶・所有のあり方について考えるための団体です。
+  </p>
+
+  <nav>
+    <a href="#about">団体について</a>
+    <a href="#activity">活動内容</a>
+    <a href="#contact">連絡先</a>
+  </nav>
 </header>
 
-<nav>
-  <button onclick="showPage('home')">ホーム</button>
-  <button onclick="showPage('about')">団体について</button>
-  <button onclick="showPage('gallery')">ギャラリー</button>
-  <button onclick="showPage('contact')">参加する</button>
-</nav>
-
-<section id="home" class="active">
-  <div class="card">
-    <h2>🏠 ようこそ</h2>
-    <p>
-      ここは「使用済みパンツ愛護団体」の公式サイトです。<br>
-      意味はあまりありませんが、勢いとノリはあります。
-    </p>
-  </div>
-</section>
-
 <section id="about">
-  <div class="card">
-    <h2>📖 なにする団体？</h2>
-    <ul>
-      <li>無駄に全力でサイトを作る</li>
-      <li>デザインを盛りすぎる</li>
-      <li>完成したら満足する</li>
-    </ul>
-  </div>
+  <h2>団体について</h2>
+  <p>
+    本団体は、廃棄される衣類を単なる不要物として扱うのではなく、<br>
+    そこに残された時間や記憶、個人と所有物の関係性に着目します。
+  </p>
 </section>
 
-<section id="gallery">
-  <div class="card">
-    <h2>🖼 ギャラリー</h2>
-    <p>ここに画像とかロゴとか置ける（あとで追加）</p>
-    <div style="font-size:2rem;">✨ 🩲 💥 🎮 ✨</div>
-  </div>
+<section id="activity">
+  <h2>活動内容</h2>
+  <p>
+    ・衣類と消費行動に関する考察<br>
+    ・使用済み衣類を題材とした記録・表現<br>
+    ・個人史と所有物の関係についての研究
+  </p>
 </section>
 
 <section id="contact">
-  <div class="card">
-    <h2>🚀 参加する</h2>
-    <p>参加条件：ノリが合えばOK</p>
-    <button onclick="alert('ようこそ団体へ！')">参加する</button>
-  </div>
+  <h2>連絡先</h2>
+  <p>
+    現在、外部向けの連絡窓口は設けていません。<br>
+    情報は本サイト上で更新されます。
+  </p>
 </section>
 
 <footer>
   © 使用済みパンツ愛護団体
 </footer>
-
-<script>
-function showPage(id) {
-  document.querySelectorAll("section").forEach(s => {
-    s.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
-}
-</script>
 
 </body>
 </html>

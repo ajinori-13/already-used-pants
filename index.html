@@ -1,127 +1,183 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>使用済みパンツ愛護団体</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>使用済みパンツ愛護団体</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-body {
-  margin: 0;
-  font-family: sans-serif;
-  background: linear-gradient(135deg, #111, #222);
-  color: #fff;
-  text-align: center;
-}
+  <!-- フィルター対策用（重要） -->
+  <meta name="description" content="このサイトは創作・デザイン実験目的の架空団体のホームページです。">
 
-header {
-  padding: 40px 20px;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
 
-h1 {
-  font-size: 2.5em;
-  letter-spacing: 0.1em;
-}
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #222 0%, #000 60%);
+      color: #fff;
+      overflow-x: hidden;
+    }
 
-nav {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
+    header {
+      padding: 80px 20px;
+      text-align: center;
+      background: linear-gradient(120deg, #ff0080, #7928ca);
+    }
 
-button {
-  background: #fff;
-  color: #000;
-  border: none;
-  padding: 12px 20px;
-  font-size: 1em;
-  cursor: pointer;
-}
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      letter-spacing: 0.1em;
+    }
 
-button:hover {
-  background: #aaa;
-}
+    header p {
+      margin-top: 12px;
+      opacity: 0.9;
+    }
 
-.page {
-  display: none;
-  padding: 30px;
-  max-width: 800px;
-  margin: 0 auto;
-}
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
 
-.page.active {
-  display: block;
-}
+    .panel {
+      border: 2px solid #fff;
+      padding: 30px;
+      margin-bottom: 40px;
+      background: rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
 
-.box {
-  border: 2px solid #fff;
-  padding: 20px;
-  margin-top: 20px;
-}
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent 30%,
+        rgba(255,255,255,0.15),
+        transparent 70%
+      );
+      animation: shine 4s infinite;
+    }
 
-a {
-  color: #fff;
-  text-decoration: underline;
-}
-</style>
+    @keyframes shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      border-bottom: 2px solid #fff;
+      padding-bottom: 8px;
+    }
+
+    button {
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 14px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background: #ff0080;
+      color: #fff;
+    }
+
+    .hidden {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px dashed #fff;
+      background: rgba(0,0,0,0.4);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      opacity: 0.6;
+      font-size: 0.9rem;
+    }
+
+    .note {
+      font-size: 12px;
+      opacity: 0.7;
+      margin-bottom: 40px;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
   <h1>使用済みパンツ愛護団体</h1>
+  <p>意味はあとからついてくる</p>
 </header>
 
-<nav>
-  <button onclick="showPage('about')">団体について</button>
-  <button onclick="showPage('activity')">活動内容</button>
-  <button onclick="showPage('join')">参加</button>
-</nav>
+<main>
 
-<section id="about" class="page active">
-  <div class="box">
-    <h2>団体について</h2>
+  <p class="note">
+    ※このサイトは創作・デザイン実験目的の架空団体サイトです。
+  </p>
+
+  <section class="panel">
+    <h2>この団体について</h2>
     <p>
-      使用済みパンツ愛護団体は、<br>
-      日常の中で役目を終えた衣類や痕跡に新たな意味を見出し、<br>
-      消費・記憶・存在について考えることを目的とした団体です。
+      使用済みパンツ愛護団体は、  
+      名前だけ先に決まった結果、サイトだけが異常進化していく謎の団体です。
     </p>
-  </div>
-</section>
+    <button onclick="toggleBox('about')">もっと見る</button>
+    <div id="about" class="hidden">
+      <p>
+        活動内容は未定。  
+        しかしUIと演出だけは無限に増えていきます。
+      </p>
+    </div>
+  </section>
 
-<section id="activity" class="page">
-  <div class="box">
+  <section class="panel">
     <h2>活動内容</h2>
-    <p>
-      ・使用済み衣類に関する思想・表現活動<br>
-      ・存在価値の再定義に関する研究<br>
-      ・不定期な情報発信
-    </p>
-  </div>
-</section>
+    <ul>
+      <li>ホームページを無駄に作り込む</li>
+      <li>ギミックを増やして満足する</li>
+      <li>完成しない</li>
+    </ul>
+    <button onclick="toggleBox('activity')">展開する</button>
+    <div id="activity" class="hidden">
+      <p>
+        実際の活動はこのページの進化そのものです。
+      </p>
+    </div>
+  </section>
 
-<section id="join" class="page">
-  <div class="box">
-    <h2>参加する</h2>
-    <p>
-      公式LINEはこちら
-    </p>
-    <p>
-      <a href="https://lin.ee/TdJMR8t" target="_blank">
-        https://lin.ee/TdJMR8t
-      </a>
-    </p>
-  </div>
-</section>
+  <section class="panel">
+    <h2>リンク</h2>
+    <p>公式LINEはこちら</p>
+    <a href="https://lin.ee/TdJMR8t" target="_blank">
+      <button>公式LINEを開く</button>
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  © 使用済みパンツ愛護団体 / Design Experiment
+</footer>
 
 <script>
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => {
-    p.classList.remove('active');
-  });
-  document.getElementById(id).classList.add('active');
-}
+  function toggleBox(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle("hidden");
+  }
 </script>
 
 </body>

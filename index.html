@@ -8,11 +8,11 @@
 
 <style>
 :root{
-  --bg:#0a0a0a;
-  --fg:#eaeaea;
-  --sub:#888;
+  --bg:#0b0b0b;
+  --fg:#f0f0f0;
+  --sub:#9a9a9a;
   --accent:#ff00aa;
-  --line:rgba(255,255,255,0.15);
+  --line:rgba(255,255,255,0.18);
 }
 
 *{
@@ -22,17 +22,24 @@
 
 body{
   margin:0;
+  color:var(--fg);
   background:
-    linear-gradient(180deg,#0a0a0a,#0e0e0e),
+    linear-gradient(180deg,#0b0b0b,#111),
     repeating-linear-gradient(
       90deg,
-      rgba(255,255,255,0.02),
-      rgba(255,255,255,0.02) 1px,
+      rgba(255,255,255,0.035),
+      rgba(255,255,255,0.035) 1px,
       transparent 1px,
-      transparent 120px
+      transparent 90px
     );
-  color:var(--fg);
+  animation:bgShift 22s linear infinite;
   overflow-x:hidden;
+}
+
+/* 背景がずっとズレ続ける */
+@keyframes bgShift{
+  0%{background-position:0 0,0 0}
+  100%{background-position:200px 0,0 0}
 }
 
 /* 微ノイズ */
@@ -40,7 +47,7 @@ body::after{
   content:"";
   position:fixed;
   inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events:none;
   z-index:1;
 }
@@ -57,38 +64,36 @@ header{
 
 header h1{
   position:relative;
-  font-size:clamp(2.8rem,6vw,4rem);
+  font-size:clamp(2.8rem,6vw,4.2rem);
   letter-spacing:0.35em;
   font-weight:600;
 }
 
-/* ===== 一箇所だけ狂う：タイトル ===== */
+/* 一箇所だけ狂う：タイトル */
 header h1::after{
   content:attr(data-text);
   position:absolute;
-  left:0;
-  top:0;
-  width:100%;
+  inset:0;
   color:var(--accent);
   opacity:0;
   clip-path:inset(0 0 0 0);
-  animation:glitchFlash 7.5s infinite;
+  animation:glitch 6.5s infinite;
   pointer-events:none;
 }
 
-@keyframes glitchFlash{
+@keyframes glitch{
   0%{opacity:0}
-  90%{opacity:0}
-  91%{
+  88%{opacity:0}
+  89%{
     opacity:1;
-    clip-path:inset(15% 0 55% 0);
-    transform:translateX(-2px);
+    clip-path:inset(12% 0 55% 0);
+    transform:translateX(-3px);
   }
-  92%{
-    clip-path:inset(45% 0 20% 0);
-    transform:translateX(2px);
+  90%{
+    clip-path:inset(48% 0 18% 0);
+    transform:translateX(3px);
   }
-  93%{
+  91%{
     opacity:0;
     transform:none;
   }
@@ -96,20 +101,20 @@ header h1::after{
 }
 
 header p{
-  margin-top:24px;
+  margin-top:26px;
   color:var(--sub);
-  letter-spacing:0.15em;
+  letter-spacing:0.18em;
 }
 
 .scroll{
   position:absolute;
   bottom:32px;
   font-size:0.8rem;
-  opacity:0.4;
+  opacity:0.45;
 }
 
 main{
-  max-width:960px;
+  max-width:980px;
   margin:auto;
   padding:120px 20px;
 }
@@ -122,50 +127,53 @@ main{
 .section::before{
   content:"";
   position:absolute;
-  left:-40px;
+  left:-36px;
   top:0;
   width:2px;
   height:100%;
   background:linear-gradient(to bottom,transparent,var(--line),transparent);
+  animation:linePulse 9s ease-in-out infinite;
+}
+
+@keyframes linePulse{
+  0%,100%{opacity:0.4}
+  50%{opacity:1}
 }
 
 .section h2{
   font-size:1.9rem;
-  margin-bottom:40px;
-  letter-spacing:0.2em;
+  margin-bottom:42px;
+  letter-spacing:0.22em;
 }
 
 .card{
-  padding:40px;
+  padding:44px;
   border:1px solid var(--line);
-  background:rgba(255,255,255,0.02);
-  backdrop-filter:blur(2px);
+  background:rgba(255,255,255,0.025);
+  backdrop-filter:blur(3px);
   position:relative;
 }
 
 .card::after{
   content:"";
   position:absolute;
-  inset:0;
-  background:
-    linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255,255,255,0.04) 50%,
-      transparent 100%
-    );
+  inset:-1px;
+  border:1px solid rgba(255,0,170,0.25);
   opacity:0;
-  transition:0.6s;
+  animation:frameBlink 12s infinite;
 }
 
-.card:hover::after{
-  opacity:1;
+@keyframes frameBlink{
+  0%,85%{opacity:0}
+  86%{opacity:1}
+  87%{opacity:0}
+  100%{opacity:0}
 }
 
 .card p,
 .card li{
   line-height:2;
-  letter-spacing:0.05em;
+  letter-spacing:0.06em;
 }
 
 ul{
@@ -173,12 +181,12 @@ ul{
 }
 
 button{
-  margin-top:28px;
-  padding:12px 28px;
+  margin-top:30px;
+  padding:12px 30px;
   background:transparent;
   color:var(--fg);
   border:1px solid var(--fg);
-  letter-spacing:0.2em;
+  letter-spacing:0.22em;
   cursor:pointer;
   transition:0.3s;
 }
@@ -200,11 +208,11 @@ button:hover{
   inset:0;
   background:
     radial-gradient(circle at center,
-      rgba(255,0,170,0.25),
+      rgba(255,0,170,0.3),
       transparent 70%);
   opacity:0;
   pointer-events:none;
-  transition:0.4s;
+  transition:0.35s;
 }
 
 .portal.active{
@@ -212,11 +220,11 @@ button:hover{
 }
 
 footer{
-  padding:80px 20px;
+  padding:90px 20px;
   text-align:center;
   font-size:0.8rem;
   color:var(--sub);
-  letter-spacing:0.15em;
+  letter-spacing:0.18em;
 }
 </style>
 </head>
@@ -308,7 +316,7 @@ function toggle(id){
   document.getElementById(id).classList.toggle("hidden");
   const portal=document.getElementById("portal");
   portal.classList.add("active");
-  setTimeout(()=>portal.classList.remove("active"),350);
+  setTimeout(()=>portal.classList.remove("active"),320);
 }
 </script>
 

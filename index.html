@@ -7,136 +7,185 @@
 <meta name="description" content="このサイトは創作目的の架空団体『使用済みパンツ愛護団体』の公式サイトです。">
 
 <style>
-*{box-sizing:border-box;font-family:system-ui,sans-serif}
+:root{
+  --bg:#0a0a0a;
+  --fg:#eaeaea;
+  --sub:#888;
+  --accent:#ff00aa;
+  --line:rgba(255,255,255,0.15);
+}
+
+*{
+  box-sizing:border-box;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
 body{
   margin:0;
-  background:#000;
-  color:#fff;
+  background:
+    linear-gradient(180deg,#0a0a0a,#0e0e0e),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.02),
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 120px
+    );
+  color:var(--fg);
   overflow-x:hidden;
 }
 
-/* 背景ノイズ */
-body::before{
+/* 微ノイズ */
+body::after{
   content:"";
   position:fixed;
   inset:0;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.03),
-      rgba(255,255,255,0.03) 1px,
-      transparent 1px,
-      transparent 3px
-    );
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events:none;
   z-index:1;
 }
 
 header{
-  position:relative;
-  height:100vh;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
-  background:
-    radial-gradient(circle at center, #ff00aa, #000 70%);
+  position:relative;
 }
 
 header h1{
-  font-size:3.5rem;
-  letter-spacing:0.2em;
-  animation: glitch 2s infinite;
-}
-
-@keyframes glitch{
-  0%{text-shadow:2px 0 #0ff,-2px 0 #f0f}
-  50%{text-shadow:-2px 0 #0ff,2px 0 #f0f}
-  100%{text-shadow:2px 0 #0ff,-2px 0 #f0f}
+  font-size:clamp(2.8rem,6vw,4rem);
+  letter-spacing:0.35em;
+  font-weight:600;
+  text-shadow:
+    0 0 0 transparent,
+    0 0 0 transparent;
 }
 
 header p{
-  margin-top:16px;
-  opacity:0.9;
+  margin-top:24px;
+  color:var(--sub);
+  letter-spacing:0.15em;
 }
 
 .scroll{
   position:absolute;
-  bottom:40px;
-  opacity:0.6;
+  bottom:32px;
+  font-size:0.8rem;
+  opacity:0.4;
 }
 
 main{
-  max-width:1100px;
+  max-width:960px;
   margin:auto;
-  padding:80px 20px;
+  padding:120px 20px;
 }
 
 .section{
-  margin-bottom:120px;
+  margin-bottom:160px;
+  position:relative;
+}
+
+.section::before{
+  content:"";
+  position:absolute;
+  left:-40px;
+  top:0;
+  width:2px;
+  height:100%;
+  background:linear-gradient(to bottom,transparent,var(--line),transparent);
 }
 
 .section h2{
-  font-size:2.2rem;
-  border-left:6px solid #ff00aa;
-  padding-left:16px;
+  font-size:1.9rem;
+  margin-bottom:40px;
+  letter-spacing:0.2em;
 }
 
 .card{
-  margin-top:30px;
-  padding:30px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.3);
-  transition:0.3s;
+  padding:40px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,0.02);
+  backdrop-filter:blur(2px);
+  position:relative;
 }
 
-.card:hover{
-  transform:scale(1.03) rotate(0.3deg);
-  background:rgba(255,255,255,0.12);
+.card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255,255,255,0.04) 50%,
+      transparent 100%
+    );
+  opacity:0;
+  transition:0.6s;
+}
+
+.card:hover::after{
+  opacity:1;
+}
+
+.card p,
+.card li{
+  line-height:2;
+  letter-spacing:0.05em;
+}
+
+ul{
+  padding-left:1.2em;
 }
 
 button{
-  margin-top:20px;
-  padding:14px 26px;
-  background:#fff;
-  color:#000;
-  border:none;
-  font-size:1rem;
+  margin-top:28px;
+  padding:12px 28px;
+  background:transparent;
+  color:var(--fg);
+  border:1px solid var(--fg);
+  letter-spacing:0.2em;
   cursor:pointer;
+  transition:0.3s;
 }
 
 button:hover{
-  background:#ff00aa;
-  color:#fff;
+  background:var(--fg);
+  color:#000;
 }
 
 .hidden{
   display:none;
-  margin-top:20px;
-  border-top:1px dashed #fff;
-  padding-top:20px;
+  margin-top:32px;
+  padding-top:32px;
+  border-top:1px dashed var(--line);
 }
 
 .portal{
   position:fixed;
   inset:0;
-  background:radial-gradient(circle, #0ff, #000 70%);
-  mix-blend-mode:screen;
+  background:
+    radial-gradient(circle at center,
+      rgba(255,0,170,0.25),
+      transparent 70%);
   opacity:0;
   pointer-events:none;
   transition:0.5s;
 }
 
 .portal.active{
-  opacity:0.25;
+  opacity:1;
 }
 
 footer{
-  padding:60px;
+  padding:80px 20px;
   text-align:center;
-  opacity:0.6;
-  font-size:0.9rem;
+  font-size:0.8rem;
+  color:var(--sub);
+  letter-spacing:0.15em;
 }
 </style>
 </head>
@@ -224,9 +273,9 @@ footer{
 <script>
 function toggle(id){
   document.getElementById(id).classList.toggle("hidden");
-  const portal = document.getElementById("portal");
+  const portal=document.getElementById("portal");
   portal.classList.add("active");
-  setTimeout(()=>portal.classList.remove("active"),500);
+  setTimeout(()=>portal.classList.remove("active"),400);
 }
 </script>
 

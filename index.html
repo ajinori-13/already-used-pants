@@ -1,183 +1,233 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>使用済みパンツ愛護団体</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>使用済みパンツ愛護団体</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="このサイトは創作目的の架空団体『使用済みパンツ愛護団体』の公式サイトです。">
 
-  <!-- フィルター対策用（重要） -->
-  <meta name="description" content="このサイトは創作・デザイン実験目的の架空団体のホームページです。">
+<style>
+*{box-sizing:border-box;font-family:system-ui,sans-serif}
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Segoe UI", sans-serif;
-    }
+/* 背景ノイズ */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  pointer-events:none;
+  z-index:1;
+}
 
-    body {
-      margin: 0;
-      background: radial-gradient(circle at top, #222 0%, #000 60%);
-      color: #fff;
-      overflow-x: hidden;
-    }
+header{
+  position:relative;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:
+    radial-gradient(circle at center, #ff00aa, #000 70%);
+}
 
-    header {
-      padding: 80px 20px;
-      text-align: center;
-      background: linear-gradient(120deg, #ff0080, #7928ca);
-    }
+header h1{
+  font-size:3.5rem;
+  letter-spacing:0.2em;
+  animation: glitch 2s infinite;
+}
 
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-      letter-spacing: 0.1em;
-    }
+@keyframes glitch{
+  0%{text-shadow:2px 0 #0ff,-2px 0 #f0f}
+  50%{text-shadow:-2px 0 #0ff,2px 0 #f0f}
+  100%{text-shadow:2px 0 #0ff,-2px 0 #f0f}
+}
 
-    header p {
-      margin-top: 12px;
-      opacity: 0.9;
-    }
+header p{
+  margin-top:16px;
+  opacity:0.9;
+}
 
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 60px 20px;
-    }
+.scroll{
+  position:absolute;
+  bottom:40px;
+  opacity:0.6;
+}
 
-    .panel {
-      border: 2px solid #fff;
-      padding: 30px;
-      margin-bottom: 40px;
-      background: rgba(255,255,255,0.05);
-      position: relative;
-      overflow: hidden;
-    }
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:80px 20px;
+}
 
-    .panel::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        120deg,
-        transparent 30%,
-        rgba(255,255,255,0.15),
-        transparent 70%
-      );
-      animation: shine 4s infinite;
-    }
+.section{
+  margin-bottom:120px;
+}
 
-    @keyframes shine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
+.section h2{
+  font-size:2.2rem;
+  border-left:6px solid #ff00aa;
+  padding-left:16px;
+}
 
-    h2 {
-      margin-top: 0;
-      font-size: 1.8rem;
-      border-bottom: 2px solid #fff;
-      padding-bottom: 8px;
-    }
+.card{
+  margin-top:30px;
+  padding:30px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.3);
+  transition:0.3s;
+}
 
-    button {
-      background: #fff;
-      color: #000;
-      border: none;
-      padding: 14px 24px;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-top: 20px;
-    }
+.card:hover{
+  transform:scale(1.03) rotate(0.3deg);
+  background:rgba(255,255,255,0.12);
+}
 
-    button:hover {
-      background: #ff0080;
-      color: #fff;
-    }
+button{
+  margin-top:20px;
+  padding:14px 26px;
+  background:#fff;
+  color:#000;
+  border:none;
+  font-size:1rem;
+  cursor:pointer;
+}
 
-    .hidden {
-      display: none;
-      margin-top: 20px;
-      padding: 20px;
-      border: 1px dashed #fff;
-      background: rgba(0,0,0,0.4);
-    }
+button:hover{
+  background:#ff00aa;
+  color:#fff;
+}
 
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      opacity: 0.6;
-      font-size: 0.9rem;
-    }
+.hidden{
+  display:none;
+  margin-top:20px;
+  border-top:1px dashed #fff;
+  padding-top:20px;
+}
 
-    .note {
-      font-size: 12px;
-      opacity: 0.7;
-      margin-bottom: 40px;
-    }
-  </style>
+.portal{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle, #0ff, #000 70%);
+  mix-blend-mode:screen;
+  opacity:0;
+  pointer-events:none;
+  transition:0.5s;
+}
+
+.portal.active{
+  opacity:0.25;
+}
+
+footer{
+  padding:60px;
+  text-align:center;
+  opacity:0.6;
+  font-size:0.9rem;
+}
+</style>
 </head>
 
 <body>
 
+<div id="portal" class="portal"></div>
+
 <header>
-  <h1>使用済みパンツ愛護団体</h1>
-  <p>意味はあとからついてくる</p>
+  <h1>使用済みパンツ<br>愛護団体</h1>
+  <p>それは衣類ではない。パンツだ。</p>
+  <div class="scroll">▼ scroll ▼</div>
 </header>
 
 <main>
 
-  <p class="note">
-    ※このサイトは創作・デザイン実験目的の架空団体サイトです。
-  </p>
-
-  <section class="panel">
-    <h2>この団体について</h2>
+<section class="section">
+  <h2>この団体について</h2>
+  <div class="card">
     <p>
       使用済みパンツ愛護団体は、  
-      名前だけ先に決まった結果、サイトだけが異常進化していく謎の団体です。
+      役目を終えたパンツという存在に、  
+      必要以上に真剣になるための団体です。
     </p>
-    <button onclick="toggleBox('about')">もっと見る</button>
+    <p>
+      それは衣類全般の話ではありません。  
+      あくまで、パンツ。  
+      パンツという存在そのものについて考えます。
+    </p>
+
+    <button onclick="toggle('about')">考えをひらく</button>
     <div id="about" class="hidden">
       <p>
-        活動内容は未定。  
-        しかしUIと演出だけは無限に増えていきます。
+        洗われ、干され、たたまれ、  
+        そして使われなくなったパンツ。
+      </p>
+      <p>
+        そこに価値があるかどうかは問題ではありません。  
+        ただ、パンツであったという事実を  
+        雑に扱わないための団体です。
       </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="panel">
-    <h2>活動内容</h2>
+<section class="section">
+  <h2>活動内容</h2>
+  <div class="card">
     <ul>
-      <li>ホームページを無駄に作り込む</li>
-      <li>ギミックを増やして満足する</li>
-      <li>完成しない</li>
+      <li>使用済みパンツという概念について考える</li>
+      <li>パンツの価値を一方的に決めつけない</li>
+      <li>パンツに対して、必要以上に誠実でいる</li>
     </ul>
-    <button onclick="toggleBox('activity')">展開する</button>
+
+    <button onclick="toggle('activity')">補足を見る</button>
     <div id="activity" class="hidden">
       <p>
-        実際の活動はこのページの進化そのものです。
+        この団体は、  
+        パンツを集めたり、売ったり、配ったりはしません。
+      </p>
+      <p>
+        使用済みパンツという存在を、  
+        雑に消費しない姿勢そのものが活動です。
       </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="panel">
-    <h2>リンク</h2>
-    <p>公式LINEはこちら</p>
+<section class="section">
+  <h2>接続</h2>
+  <div class="card">
+    <p>公式LINE</p>
     <a href="https://lin.ee/TdJMR8t" target="_blank">
-      <button>公式LINEを開く</button>
+      <button>リンクを開く</button>
     </a>
-  </section>
+  </div>
+</section>
 
 </main>
 
 <footer>
-  © 使用済みパンツ愛護団体 / Design Experiment
+  © 使用済みパンツ愛護団体 / Fictional Organization
 </footer>
 
 <script>
-  function toggleBox(id) {
-    const el = document.getElementById(id);
-    el.classList.toggle("hidden");
-  }
+function toggle(id){
+  document.getElementById(id).classList.toggle("hidden");
+  const portal = document.getElementById("portal");
+  portal.classList.add("active");
+  setTimeout(()=>portal.classList.remove("active"),500);
+}
 </script>
 
 </body>
